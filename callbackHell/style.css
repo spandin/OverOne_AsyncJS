@@ -1,0 +1,35 @@
+body {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding: 25px 50px;
+}
+
+.countries {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-between;
+}
+
+.country {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.border {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.countries img {
+    width: 350px;
+    height: 250px;
+    object-fit: cover;
+    border: 1px solid black;
+}
+
