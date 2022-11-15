@@ -6,6 +6,7 @@ function getCountryName(name) {
         const neighbor = data[0].borders
         console.log(neighbor);
         neighbor.map((key) => {
+            console.log(key);
             console.log(fetch(`https://restcountries.com/v3.1/alpha/${key}`))
             return fetch(`https://restcountries.com/v3.1/alpha/${key}`)
         })
@@ -27,20 +28,6 @@ function getCountryInfoByName(data) {
                 </p>
             </div>
         `
-        if(data.borders == undefined) {
-            document.querySelector('.border').innerHTML += `
-            <div class='none'>
-                <img src="" alt="">
-                <h1>none (none)</h1>
-                <h2>Capital: none</h2>
-                <p>
-                Languages: none, 
-                <br> 
-                Population: none
-                </p>
-            </div>
-            `
-        }
 }
 
 function getCountryInfoByCode(data) {
