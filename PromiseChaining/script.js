@@ -5,11 +5,10 @@ function getCountryName(name) {
         getCountryInfoByName(data[0])
         const neighbor = data[0].borders
         console.log(neighbor);
-        // neighbor.map((key) => {
-        //     console.log(fetch(`https://restcountries.com/v3.1/alpha/${key}`))
-        //     return fetch(`https://restcountries.com/v3.1/alpha/${key}`)
-        // })
-        return fetch(`https://restcountries.com/v3.1/alpha/${neighbor[2]}`)
+        neighbor.map((key) => {
+            console.log(fetch(`https://restcountries.com/v3.1/alpha/${key}`))
+            return fetch(`https://restcountries.com/v3.1/alpha/${key}`)
+        })
     })
     .then(res2 => res2.json())
     .then(data2 => getCountryInfoByCode(data2[0]))
