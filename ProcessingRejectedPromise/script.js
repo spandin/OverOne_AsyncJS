@@ -1,9 +1,3 @@
-// 1. Создайте на странице 3 кнопки. Для этих кнопок определите обработчик событий, 
-// который будет делать запрос на сервер об определённой стране.
-// 2. После того как данные получены, поместите их на страницу, а также добавьте кнопку 
-// “Получить информацию о соседних странах”. По клику на эту кнопку должна появиться информация о соседней стране.
-// 3. Для всех обращений к серверу необходимо обработать ошибку и показать её пользователю.
-
 const form = document.forms.getName
 const sendCountry = form.countrySend
 const showNeighbor = form.neighborShow
@@ -18,14 +12,23 @@ sendCountry.addEventListener('click', (e) => {
 
 function getCountryName(name) {
     const countryRequestName = fetch(`https://restcountries.com/v3.1/name/${name}`)
-    countryRequestName.then(res => res.json())
+    countryRequestName.then(res => {
+        if(!res.ok) {
+            throw new Error('Страна не найдена')
+        }
+        return res.json()
+    })
     .then(data => {
         getCountryInfoByName(data[0])
         const neighbor = data[0].borders
+        if(!neighbor) {
+            throw new Error('Страна имеет соседей')
+        }
         neighbor.map((key) => {
             return fetch(`https://restcountries.com/v3.1/alpha/${key}`)
             .then(res2 => res2.json())
             .then(data2 => showNeighbor.addEventListener('click', (e) => {
+                e.preventDefault()
                 getCountryInfoByCode(data2[0])
             }))
         })
